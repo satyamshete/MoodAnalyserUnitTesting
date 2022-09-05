@@ -46,5 +46,20 @@ namespace MoodAnalyzerTestCases
             string result = moodanalyzer.AnalysisUsinMoodWithParameterisedConstructor();
             Assert.AreEqual("HAPPY", result);
         }
+
+        [Test]
+        //UC2
+        public void Given_Null_Return_happy()
+        {
+            moodanalyzer = new Moodanalyzer();
+            try
+            {
+                string Message = moodanalyzer.AnalyseMoodException();
+            }
+            catch (MoodAnalyserNull mood)
+            {
+                Assert.AreEqual("HAPPY", mood.Is_Happy);
+            }
+        }
     }
 }

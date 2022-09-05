@@ -41,5 +41,20 @@ namespace MoodAnalyzer
                 return "HAPPY";
             }
         }
+        public string AnalyseMoodException()
+        {
+            try
+            {
+                if (Sentense.ToLower().Contains("sad"))
+
+                    return "SAD";
+                else
+                    return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserNull("HAPPY");
+            }
+        }
     }
 }
