@@ -66,7 +66,7 @@ namespace MoodAnalyzer
                 }
                 else if (Sentense.Equals(string.Empty))
                 {
-                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_MOOd, "Mood should not be empty");
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_MOOD, "Mood should not be empty");
                 }
                 else return "HAPPY";
             }
