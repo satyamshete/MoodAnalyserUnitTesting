@@ -135,5 +135,46 @@ namespace MoodAnalyzerTestCases
             }
 
         }
+        /// <summary>
+        /// UC5
+        /// </summary>
+        [Test]
+        public void Using_Reflection_Given_ClassName_Return_Object_Parametrised_Constructor()
+        {
+            moodanalyzer = new Moodanalyzer("I am in Happy Mood");
+            string ClassName = "MoodAnalyzer.Moodanalyzer";
+            object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParametrisedConstructor(ClassName, "Moodanalyzer");
+            obj.Equals(moodanalyzer);
+        }
+        [Test]
+        public void Using_Reflection_Given_Improper_ClassName_Return_No_Class_Found_Parametrerised_Constructor()
+        {
+            try
+            {
+                moodanalyzer = new Moodanalyzer("I am in Happy Mood");
+                string ClassName = "MoodAnalyze.Moodanalyze";
+                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParametrisedConstructor(ClassName, "Moodanalyzer");
+                obj.Equals(moodanalyzer);
+            }
+            catch (MoodAnalyzerException exception)
+            {
+                Assert.AreEqual(exception.exceptionType, MoodAnalyzerException.ExceptionType.NO_CLASS_FOUND);
+            }
+        }
+        [Test]
+        public void Using_Reflection_Given_proper_ClassName_Return_No_Class_Found_Parametrerised_Constructor()
+        {
+            try
+            {
+                moodanalyzer = new Moodanalyzer("I am in Happy Mood");
+                string ClassName = "MoodAnalyzer.Moodanalyzer";
+                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParametrisedConstructor(ClassName, "Moodanalyze");
+                obj.Equals(moodanalyzer);
+            }
+            catch (MoodAnalyzerException exception)
+            {
+                Assert.AreEqual(exception.exceptionType, MoodAnalyzerException.ExceptionType.NO_CONSTRUCTOR);
+            }
+        }
     }
 }
